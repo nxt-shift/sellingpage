@@ -1,8 +1,11 @@
-/* Shift — landing-page sections.
- * Editorial / dispatch-board treatment. All copy goes through L10N(lang). */
-
-const { Button, Input, Badge, Card, SectorChip, ReliabilityScore, Stat, FiableStamp, HazardDivider } =
-  window.ShiftDesignForLandingPage_3203c0;
+import React from "react";
+import { Button } from "../../src/components/core/Button";
+import { Input } from "../../src/components/core/Input";
+import { Badge } from "../../src/components/core/Badge";
+import { SectorChip } from "../../src/components/shift/SectorChip";
+import { ReliabilityScore } from "../../src/components/shift/ReliabilityScore";
+import { FiableStamp } from "../../src/components/shift/FiableStamp";
+import { HazardDivider } from "../../src/components/shift/HazardDivider";
 
 // ─── L10N ────────────────────────────────────────────────────────────────
 const STRINGS = {
@@ -219,7 +222,7 @@ const STRINGS = {
 };
 
 // Shared bits
-const LOGO = "../../assets/shift-logo.png";
+const LOGO = "/src/assets/shift-logo.png";
 
 const Wordmark = ({ size = 28, color = "var(--asphalt-900)" }) => (
   <span style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: size, letterSpacing: "-0.025em", color, lineHeight: 1 }}>shift</span>
@@ -279,7 +282,7 @@ function ShiftNav({ lang, setLang, t }) {
 }
 
 // ─── HERO ───────────────────────────────────────────────────────────────
-function Hero({ onJoin, t, lang }) {
+function Hero({ onJoin, t }) {
   return (
     <section id="top" style={{
       padding: "0 0 0 0",
@@ -735,5 +738,4 @@ function CompanyFooter({ t }) {
   );
 }
 
-// Expose
-Object.assign(window, { STRINGS, ShiftNav, Hero, Problem, HowItWorks, Sectors, WhyNow, Waitlist, CompanyFooter });
+export { STRINGS, ShiftNav, Hero, Problem, HowItWorks, Sectors, WhyNow, Waitlist, CompanyFooter };
