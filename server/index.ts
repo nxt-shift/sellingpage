@@ -5,7 +5,7 @@ const port = 3000;
 
 app.use(express.json());
 
-app.get('/api/health', (req, res) => {
+app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', message: 'Shift server running' });
 });
 

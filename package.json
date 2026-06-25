@@ -5,6 +5,7 @@
   "main": "src/_ds_bundle.js",
   "scripts": {
     "dev": "vite",
+    "type-check": "tsc --noEmit",
     "build": "vite build",
     "preview": "vite preview",
     "start": "npm run dev"
@@ -19,11 +20,17 @@
   "author": "Shift Team",
   "license": "MIT",
   "dependencies": {
+    "express": "^5.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.0.1",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^5.9.3",
     "vite": "^4.3.0"
   },
   "engines": {
@@ -31,5 +38,3 @@
     "npm": ">=8.0.0"
   }
 }
-
-
