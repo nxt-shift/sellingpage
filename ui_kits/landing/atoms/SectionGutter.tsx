@@ -4,7 +4,7 @@ export interface SectionGutterProps {
   color?: string;
 }
 
-export const SectionGutter = ({ n, total = "04", color = "var(--text-subtle)" }: SectionGutterProps) => (
+export const SectionGutter = ({ n, total = "03", color = "var(--text-subtle)" }: SectionGutterProps) => (
   <div style={{
     position: "absolute", top: 24, left: 24,
     fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 600,

@@ -1,0 +1,15 @@
+/* Shift — Hero scene scroll cue
+ * The season scene + clock are real 3D objects rendered via WebGL
+ * (ui_kits/landing/widgets/three). This file just covers the small
+ * HTML/CSS chrome layered on top.
+ */
+
+.shift-scroll-chevron {
+  display: inline-block;
+  animation: shift-scroll-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes shift-scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}

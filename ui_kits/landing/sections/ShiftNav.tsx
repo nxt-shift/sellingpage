@@ -43,7 +43,7 @@ export function ShiftNav({ lang, setLang, t }: ShiftNavProps) {
             }}>{L.toUpperCase()}</button>
           ))}
         </div>
-        <Button variant="ink" size="sm" onClick={() => document.getElementById("waitlist")?.scrollIntoView({behavior:"smooth"})}>
+        <Button variant="ink" size="sm" onClick={() => document.getElementById("top")?.scrollIntoView({behavior:"smooth"})}>
           {t.nav.cta}
         </Button>
       </div>
