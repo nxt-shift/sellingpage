@@ -1,6 +1,15 @@
 import React from "react";
 
-const tones = {
+export type BadgeTone = "neutral" | "brand" | "accent" | "ink" | "reliable" | "hazard" | "danger";
+export type BadgeShape = "square" | "pill";
+
+export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+  tone?: BadgeTone;
+  shape?: BadgeShape;
+  icon?: React.ReactNode;
+}
+
+const tones: Record<BadgeTone, { bg: string; fg: string }> = {
   neutral: { bg: "var(--asphalt-100)", fg: "var(--asphalt-700)" },
   brand:   { bg: "var(--shift-cobalt-500)", fg: "var(--cream-50)" },
   accent:  { bg: "var(--shift-orange-500)", fg: "var(--asphalt-900)" },
@@ -13,8 +22,8 @@ const tones = {
 /**
  * Compact label — sector tags, status, counters. Pill or square per `shape`.
  */
-export function Badge({ tone = "neutral", shape = "square", icon, children, style, ...rest }) {
-  const t = tones[tone] || tones.neutral;
+export function Badge({ tone = "neutral", shape = "square", icon, children, style, ...rest }: BadgeProps) {
+  const t = tones[tone];
   const s = {
     display: "inline-flex", alignItems: "center", gap: 6,
     fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11,

@@ -1,13 +1,25 @@
 import React from "react";
 
-const sizes = {
+export type ButtonVariant = "primary" | "accent" | "ink" | "outline" | "ghost";
+export type ButtonSize = "sm" | "md" | "lg" | "xl";
+
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Visual style. `accent` carries the brand stamp shadow — use for the single hero CTA. */
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  fullWidth?: boolean;
+  leadingIcon?: React.ReactNode;
+  trailingIcon?: React.ReactNode;
+}
+
+const sizes: Record<ButtonSize, { fontSize: number; padding: string; height: number; gap: number }> = {
   sm: { fontSize: 13, padding: "8px 14px", height: 32, gap: 6 },
   md: { fontSize: 14, padding: "10px 18px", height: 40, gap: 8 },
   lg: { fontSize: 16, padding: "14px 22px", height: 48, gap: 10 },
   xl: { fontSize: 18, padding: "18px 28px", height: 60, gap: 12 },
 };
 
-const variants = {
+const variants: Record<ButtonVariant, React.CSSProperties> = {
   primary: {
     background: "var(--shift-cobalt-500)",
     color: "var(--cream-50)",
@@ -51,12 +63,11 @@ export function Button({
   children,
   style,
   ...rest
-}) {
+}: ButtonProps) {
   const s = {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: sizes[size].gap,
     fontFamily: "var(--font-display)",
     fontWeight: 700,
     letterSpacing: "-0.005em",

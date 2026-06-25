@@ -1,10 +1,21 @@
 import React from "react";
 
+export type StatTone = "ink" | "brand" | "accent" | "reliable";
+export type StatAlign = "left" | "center";
+
+export interface StatProps {
+  value: React.ReactNode;
+  label: string;
+  sublabel?: string;
+  tone?: StatTone;
+  align?: StatAlign;
+}
+
 /**
  * Numeric KPI block — big mono number, label, optional delta.
  */
-export function Stat({ value, label, sublabel, tone = "ink", align = "left" }) {
-  const tones = {
+export function Stat({ value, label, sublabel, tone = "ink", align = "left" }: StatProps) {
+  const tones: Record<StatTone, { color: string }> = {
     ink: { color: "var(--text-strong)" },
     brand: { color: "var(--shift-cobalt-600)" },
     accent: { color: "var(--shift-orange-600)" },

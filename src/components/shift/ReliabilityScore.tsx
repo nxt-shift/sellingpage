@@ -1,11 +1,18 @@
-import React from "react";
+export type ReliabilityScoreSize = "sm" | "md" | "lg";
+
+export interface ReliabilityScoreProps {
+  score?: number;
+  shifts?: number;
+  size?: ReliabilityScoreSize;
+  showLabel?: boolean;
+}
 
 /**
  * Reliability score — the Shift moat. Renders the score (1–5), optional star
  * count, and a "FIABLE" badge when the score is high enough.
  */
-export function ReliabilityScore({ score = 5.0, shifts, size = "md", showLabel = true }) {
-  const sizes = {
+export function ReliabilityScore({ score = 5.0, shifts, size = "md", showLabel = true }: ReliabilityScoreProps) {
+  const sizes: Record<ReliabilityScoreSize, { num: number; label: number; gap: number }> = {
     sm: { num: 14, label: 9,  gap: 6  },
     md: { num: 22, label: 10, gap: 8  },
     lg: { num: 34, label: 11, gap: 10 },

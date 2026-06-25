@@ -1,5 +1,16 @@
 import React from "react";
 
+export type InputSize = "sm" | "md" | "lg";
+
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
+  label?: string;
+  hint?: string;
+  error?: string;
+  size?: InputSize;
+  leadingIcon?: React.ReactNode;
+  trailingSlot?: React.ReactNode;
+}
+
 /**
  * Text input. Includes optional label, hint, and error. Mobile-first sizing.
  */
@@ -13,10 +24,10 @@ export function Input({
   size = "md",
   style,
   ...rest
-}) {
+}: InputProps) {
   const inputId = id || (label ? `inp-${String(label).toLowerCase().replace(/\W+/g, "-")}` : undefined);
-  const heights = { sm: 36, md: 44, lg: 52 };
-  const wrap = {
+  const heights: Record<InputSize, number> = { sm: 36, md: 44, lg: 52 };
+  const wrap: React.CSSProperties = {
     display: "flex",
     alignItems: "center",
     gap: 8,
