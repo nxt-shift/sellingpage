@@ -44,3 +44,7 @@ Thumbs.db
 *.tmp
 *.temp
 
+# Internal research notes (kept locally only)
+shift_research.txt
+uploads/shift_research.pdf
+
