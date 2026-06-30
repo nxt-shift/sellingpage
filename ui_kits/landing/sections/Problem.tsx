@@ -1,5 +1,6 @@
-import { FiableStamp } from "../../../src/components/shift/FiableStamp";
+import * as React from "react";
 import { SectionGutter } from "../atoms/SectionGutter";
+import { useReveal } from "../atoms/useReveal";
 import type { LandingStrings } from "../types";
 
 export interface ProblemProps {
@@ -7,44 +8,81 @@ export interface ProblemProps {
 }
 
 export function Problem({ t }: ProblemProps) {
+  const [headlineRef, headlineVisible] = useReveal(0.15);
+  const [cardsRef, cardsVisible] = useReveal(0.08);
+
   return (
-    <section id="problem" style={{ padding: "120px 48px", background: "var(--bg-surface)", position: "relative" }}>
+    <section id="problem" style={{ background: "var(--cream-50)", position: "relative" }}>
       <SectionGutter n="01" />
-      <div style={{ maxWidth: 1180, margin: "0 auto" }}>
-        <div style={{ fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--shift-orange-600)", marginBottom: 16 }}>{t.problem.eyebrow}</div>
-        <h2 style={{ fontSize: "clamp(40px, 5.5vw, 72px)", fontWeight: 900, letterSpacing: "-0.03em", maxWidth: 920, lineHeight: 0.98, marginBottom: 64 }}>
-          {t.problem.h2}
+
+      {/* Headline */}
+      <div
+        ref={headlineRef}
+        style={{
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: "120px 48px 80px",
+          opacity: headlineVisible ? 1 : 0,
+          transform: headlineVisible ? "translateY(0)" : "translateY(48px)",
+          transition: "opacity 0.85s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1)",
+        }}
+      >
+        <h2 style={{
+          fontSize: "clamp(40px, 5.8vw, 78px)",
+          fontWeight: 900,
+          letterSpacing: "-0.03em",
+          lineHeight: 1.01,
+          color: "var(--asphalt-900)",
+          margin: 0,
+        }}>
+          {t.problem.headline}{" "}
+          <span style={{ color: "var(--shift-cobalt-500)", fontStyle: "italic" }}>
+            {t.problem.headlineHi}
+          </span>
         </h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0, border: "1.5px solid var(--asphalt-900)" }}>
-          {t.problem.items.map((it, i) => (
-            <div key={it.title} style={{
-              padding: 28,
-              borderRight: i < 2 ? "1.5px solid var(--asphalt-900)" : "none",
-              background: i === 1 ? "var(--cream-50)" : "var(--bg-surface)",
-              display: "flex", flexDirection: "column", gap: 16,
-            }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--text-muted)" }}>{it.tag}</span>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-subtle)" }}>{String(i+1).padStart(2,"0")}</span>
-              </div>
-              <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 30, letterSpacing: "-0.02em", color: "var(--asphalt-900)", lineHeight: 1.05 }}>{it.title}</h3>
-              <p style={{ fontSize: 15, color: "var(--text-body)", lineHeight: 1.55 }}>{it.body}</p>
+      </div>
+
+      {/* Three benefit cards */}
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 48px" }}>
+        <div
+          ref={cardsRef}
+          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", border: "1.5px solid var(--asphalt-900)" }}
+        >
+          {t.problem.cards.map((card, i) => (
+            <div
+              key={i}
+              style={{
+                padding: "40px 32px",
+                borderRight: i < 2 ? "1.5px solid var(--asphalt-900)" : "none",
+                background: i === 1 ? "var(--asphalt-900)" : "transparent",
+                color: i === 1 ? "var(--cream-50)" : "var(--asphalt-900)",
+                display: "flex", flexDirection: "column", gap: 20,
+                opacity: cardsVisible ? 1 : 0,
+                transform: cardsVisible ? "translateY(0)" : "translateY(36px)",
+                transition: `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${i * 0.14}s, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${i * 0.14}s`,
+              }}
+            >
+              <span style={{
+                fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700,
+                letterSpacing: "0.18em", textTransform: "uppercase", opacity: 0.45,
+              }}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 style={{
+                fontSize: 28, fontWeight: 900, letterSpacing: "-0.02em",
+                lineHeight: 1.08, margin: 0, color: "inherit",
+              }}>
+                {card.title}
+              </h3>
+              <p style={{ fontSize: 15, lineHeight: 1.58, margin: 0, opacity: 0.78, color: "inherit" }}>
+                {card.body}
+              </p>
             </div>
           ))}
         </div>
-
-        <div style={{ marginTop: 0, background: "var(--shift-cobalt-500)", color: "var(--cream-50)", padding: "48px 40px", display: "grid", gridTemplateColumns: "auto 1fr", gap: 40, alignItems: "center", border: "1.5px solid var(--asphalt-900)", borderTop: "none" }}>
-          <FiableStamp size="lg" />
-          <div>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, opacity: 0.7, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 12 }}>{t.problem.insightLabel}</div>
-            <p style={{ fontSize: 26, lineHeight: 1.35, fontFamily: "var(--font-display)", fontWeight: 700, letterSpacing: "-0.015em" }}>
-              {t.problem.insight}{" "}
-              <span style={{ color: "var(--shift-orange-500)", borderBottom: "4px solid var(--shift-orange-500)" }}>{t.problem.insightHi}</span>{" "}
-              {t.problem.insight2}
-            </p>
-          </div>
-        </div>
       </div>
+
+      <div style={{ paddingBottom: 120 }} />
     </section>
   );
 }

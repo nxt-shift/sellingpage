@@ -3,10 +3,10 @@ import type { LandingStrings } from "../types";
 export const en: LandingStrings = {
   nav: { problem: "The problem", sectors: "Sectors", cta: "Join the waitlist", pre: "Pre-launch" },
   hero: {
-    tag1: "Montreal · Quebec",
+    tag1: "Canada",
     tag2: "Blue-collar seasonal hiring",
     h1a: "Hire", h1b: "reliable.", h1c: "Season after season.",
-    lede: "Shift is the first digital infrastructure built for blue-collar seasonal hiring in Quebec. Circulate your workforce across seasons — without ever losing it.",
+    lede: "Shift is the first digital infrastructure built for blue-collar seasonal hiring in Quebec. Circulate your workforce across seasons without ever losing it.",
     emailLabel: "Email address", emailPh: "you@company.qc", join: "Join →",
     counter: "127 companies on the list · First access May 2026",
     microcopy: "EN/FR · No spam · Unsubscribe anytime",
@@ -15,15 +15,15 @@ export const en: LandingStrings = {
     thanksTo: "Confirmation sent to",
   },
   problem: {
-    eyebrow: "§ 01 — The problem",
-    h2: "Seasonal hiring still runs on word of mouth. In the 21st century.",
-    items: [
-      { tag: "For employers",  title: "Kijiji, or nothing.", body: "40 unqualified replies, or zero. No way to find last year's best workers. Every spring starts from scratch." },
-      { tag: "For workers",    title: "The cousin, Facebook, luck.", body: "No way to build a verifiable work history. Gaps between seasons. Invisible to employers outside personal networks." },
-      { tag: "For suppliers",  title: "We lose our crews every winter.", body: "A crew trained May to October. In November they leave for the competition. No mechanism to lend them and get them back in spring." },
+    headline: "Keep the majority of your employees for the next season.",
+    headlineHi: "Recycle your workforce.",
+    cards: [
+      { title: "It's reliable.", body: "Your best workers come back to you automatically. No more starting from scratch every spring." },
+      { title: "Mind free.", body: "Stop worrying about who's coming back. Focus on running your business, not finding your crew." },
+      { title: "You're profitable.", body: "Less onboarding. Less training. More output. Higher margins, season after season." },
     ],
-    insightLabel: "The core insight",
-    insight: "Shift is not a job board. It is infrastructure that", insightHi: "circulates", insight2: "crews across complementary seasons — so the worker never experiences an employment gap.",
+    pipeline: "A connecting pipeline between companies.",
+    sub: "Now you can run your business without worrying about workforce. We help you.",
   },
   sectors: {
     eyebrow: "§ 02 — Circulation",

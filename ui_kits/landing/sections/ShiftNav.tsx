@@ -20,13 +20,6 @@ export function ShiftNav({ lang, setLang, t }: ShiftNavProps) {
       <a href="#top" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
         <img src={LOGO} width="34" height="34" alt="" style={{ display:"block" }} />
         <Wordmark size={26} />
-        <span style={{
-          fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700,
-          letterSpacing: "0.18em", textTransform: "uppercase",
-          padding: "3px 7px", marginLeft: 4,
-          background: "var(--shift-orange-500)", color: "var(--asphalt-900)",
-          border: "1.5px solid var(--asphalt-900)",
-        }}>{t.nav.pre}</span>
       </a>
       <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 13 }}>
         {links.map(([href, label]) =>

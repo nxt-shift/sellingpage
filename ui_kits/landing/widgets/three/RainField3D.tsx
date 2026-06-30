@@ -2,8 +2,8 @@ import * as React from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 
-const COUNT = 50;
-const SPAN_X = 14;
+const COUNT = 280;
+const SPAN_X = 16;
 const SPAN_Z = 9;
 const TOP_Y = 7;
 const BOTTOM_Y = -3;
@@ -22,7 +22,7 @@ function makeDrops(): Drop[] {
     z: (Math.random() - 0.5) * SPAN_Z,
     y: TOP_Y + Math.random() * (TOP_Y - BOTTOM_Y),
     speed: 6 + Math.random() * 5,
-    length: 0.3 + Math.random() * 0.35,
+    length: 0.45 + Math.random() * 0.55,
   }));
 }
 

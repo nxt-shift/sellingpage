@@ -3,10 +3,10 @@ import type { LandingStrings } from "../types";
 export const fr: LandingStrings = {
   nav: { problem: "Le problème", sectors: "Secteurs", cta: "Rejoindre la liste", pre: "Pré-lancement" },
   hero: {
-    tag1: "Montréal · Québec",
+    tag1: "Canada",
     tag2: "Embauche saisonnière col-bleu",
     h1a: "Embauchez", h1b: "fiable.", h1c: "Saison après saison.",
-    lede: "Shift est la première infrastructure numérique pour l'embauche saisonnière col-bleu au Québec. Faites circuler vos travailleurs entre les saisons — sans jamais les perdre.",
+    lede: "Shift est la première infrastructure numérique pour l'embauche saisonnière col-bleu au Québec. Faites circuler vos travailleurs entre les saisons sans jamais les perdre.",
     emailLabel: "Adresse courriel", emailPh: "vous@entreprise.qc", join: "Rejoindre →",
     counter: "127 entreprises sur la liste · Premier accès en mai 2026",
     microcopy: "FR/EN · Aucun spam · Vous pouvez vous désinscrire en tout temps",
@@ -15,15 +15,15 @@ export const fr: LandingStrings = {
     thanksTo: "Confirmation envoyée à",
   },
   problem: {
-    eyebrow: "§ 01 — Le problème",
-    h2: "L'embauche saisonnière roule sur le bouche-à-oreille. Au 21ᵉ siècle.",
-    items: [
-      { tag: "Pour les employeurs", title: "Kijiji, ou rien.", body: "40 réponses non-qualifiées, ou zéro. Aucune façon de retrouver vos meilleurs travailleurs de l'an passé. Chaque printemps repart à zéro." },
-      { tag: "Pour les travailleurs", title: "Le cousin, Facebook, la chance.", body: "Aucune façon de bâtir un historique vérifiable. Des trous entre les saisons. Invisibles aux employeurs en dehors de leur réseau personnel." },
-      { tag: "Pour les fournisseurs", title: "On perd nos équipes l'hiver.", body: "Une équipe formée mai à octobre. En novembre ils partent à la compétition. Aucun mécanisme pour les prêter et les récupérer au printemps." },
+    headline: "Gardez la majorité de vos employés pour la prochaine saison.",
+    headlineHi: "Recyclez votre main-d'œuvre.",
+    cards: [
+      { title: "C'est fiable.", body: "Vos meilleurs travailleurs reviennent automatiquement. Fini de repartir à zéro chaque printemps." },
+      { title: "L'esprit libre.", body: "Arrêtez de vous inquiéter de qui revient. Concentrez-vous sur la gestion, pas sur le recrutement." },
+      { title: "Vous êtes rentable.", body: "Moins d'intégration. Moins de formation. Plus de production. Des marges plus élevées, saison après saison." },
     ],
-    insightLabel: "L'insight central",
-    insight: "Shift n'est pas un babillard d'emplois. C'est une infrastructure qui fait", insightHi: "circuler", insight2: "les équipes entre les saisons complémentaires — sans jamais que le travailleur ne vive un trou d'emploi.",
+    pipeline: "Un pipeline de connexion entre entreprises.",
+    sub: "Gérez votre entreprise sans vous inquiéter de la main-d'œuvre. Nous vous aidons.",
   },
   sectors: {
     eyebrow: "§ 02 — La circulation",

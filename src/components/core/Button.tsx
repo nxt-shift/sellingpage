@@ -26,10 +26,10 @@ const variants: Record<ButtonVariant, React.CSSProperties> = {
     border: "1.5px solid var(--shift-cobalt-500)",
   },
   accent: {
-    background: "var(--shift-orange-500)",
-    color: "var(--asphalt-900)",
-    border: "1.5px solid var(--asphalt-900)",
-    boxShadow: "var(--shadow-stamp)",
+    background: "var(--shift-cobalt-500)",
+    color: "var(--cream-50)",
+    border: "1.5px solid var(--shift-cobalt-700)",
+    boxShadow: "var(--shadow-stamp-brand)",
   },
   ink: {
     background: "var(--asphalt-900)",

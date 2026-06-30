@@ -27,20 +27,17 @@ export interface HeroStrings {
   thanksTo: string;
 }
 
-export interface ProblemItem {
-  tag: string;
+export interface ProblemCard {
   title: string;
   body: string;
 }
 
 export interface ProblemStrings {
-  eyebrow: string;
-  h2: string;
-  items: ProblemItem[];
-  insightLabel: string;
-  insight: string;
-  insightHi: string;
-  insight2: string;
+  headline: string;
+  headlineHi: string;
+  cards: ProblemCard[];
+  pipeline: string;
+  sub: string;
 }
 
 export interface SectorsStrings {

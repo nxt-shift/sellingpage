@@ -4,6 +4,7 @@ import {
   ShiftNav,
   Hero,
   Problem,
+  Pipeline,
   Sectors,
   WhyNow,
   CompanyFooter,
@@ -23,6 +24,7 @@ export default function App() {
       <ShiftNav lang={lang} setLang={setLang} t={t} />
       <Hero onJoin={onJoin} joined={joined} t={t} />
       <Problem t={t} />
+      <Pipeline t={t} />
       <Sectors t={t} />
       <WhyNow t={t} />
       <CompanyFooter t={t} />
