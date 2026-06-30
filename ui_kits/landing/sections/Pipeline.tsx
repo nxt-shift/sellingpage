@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useReveal } from "../atoms/useReveal";
 import type { LandingStrings } from "../types";
 

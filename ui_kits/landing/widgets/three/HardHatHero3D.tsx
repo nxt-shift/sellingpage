@@ -7,7 +7,6 @@ const YELLOW   = "#FFD200";
 const DARK     = "#1C1800";
 const HARDWARE = "#B0ADAA";
 const WEBBING  = "#7B6249";
-const WHITE_IN = "#EDEAE2";
 
 // Dome profile shared between geometry + rib placement
 // [radius, height] pairs — apex at top, brim base at y=0
