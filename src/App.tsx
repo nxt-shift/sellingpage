@@ -6,7 +6,9 @@ import {
   Problem,
   Pipeline,
   Sectors,
-  WhyNow,
+  Pricing,
+  Faq,
+  Contact,
   CompanyFooter,
 } from "../ui_kits/landing/Sections";
 import type { Lang, OnJoin } from "../ui_kits/landing/types";
@@ -26,7 +28,9 @@ export default function App() {
       <Problem t={t} />
       <Pipeline t={t} />
       <Sectors t={t} />
-      <WhyNow t={t} />
+      <Pricing t={t} />
+      <Faq t={t} />
+      <Contact t={t} />
       <CompanyFooter t={t} />
     </>
   );

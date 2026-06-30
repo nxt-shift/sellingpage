@@ -22,9 +22,10 @@ export function Scene3D({ season }: Scene3DProps) {
   return (
     <Canvas camera={{ position: [0, 0.5, 6.2], fov: 38 }} dpr={[1, 1.5]} gl={{ antialias: true }}>
       <color attach="background" args={[SKY_COLOR[season]]} />
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[3, 5, 4]} intensity={1.1} color="#FFF1EA" />
-      <directionalLight position={[-4, 2, -3]} intensity={0.35} color="#93A8E9" />
+      <ambientLight intensity={0.35} />
+      <directionalLight position={[3, 5, 4]} intensity={1.4} color="#FFF8F0" castShadow />
+      <directionalLight position={[-4, 2, -3]} intensity={0.45} color="#93A8E9" />
+      <directionalLight position={[0, -2, 5]} intensity={0.18} color="#FFD200" />
 
       <Environment preset="city" />
 

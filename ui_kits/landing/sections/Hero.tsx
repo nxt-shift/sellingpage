@@ -31,7 +31,7 @@ export function Hero({ onJoin, joined, t }: HeroProps) {
 
       {/* Title — top of hero */}
       <div style={{ position: "relative", zIndex: 1, maxWidth: 640, margin: "0 auto", padding: "80px 24px 0", textAlign: "center" }}>
-        <div style={{ display: "flex", gap: 6, justifyContent: "center", marginBottom: 24, fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, justifyContent: "center", marginBottom: 24, fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
           <span style={{ padding: "4px 8px", background: "var(--cream-50)", color: "var(--asphalt-900)" }}>{t.hero.tag1}</span>
           <span style={{ padding: "4px 8px", border: "1.5px solid var(--cream-50)", color: "var(--cream-50)" }}>{t.hero.tag2}</span>
         </div>
@@ -44,9 +44,9 @@ export function Hero({ onJoin, joined, t }: HeroProps) {
         </h1>
       </div>
 
-      {/* Lede — centered in viewport over the hat */}
-      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 1, width: "100%", maxWidth: 400, padding: "0 24px", boxSizing: "border-box", textAlign: "center" }}>
-        <p style={{ fontSize: 15, lineHeight: 1.6, color: "var(--cream-50)", opacity: 0.88, margin: 0, textShadow: "0 1px 10px rgba(0,0,0,0.7)" }}>
+      {/* Lede — below centre, over the hat */}
+      <div style={{ position: "absolute", top: "62%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 1, width: "100%", maxWidth: 520, padding: "0 32px", boxSizing: "border-box", textAlign: "center" }}>
+        <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--cream-50)", opacity: 0.88, margin: 0, textShadow: "0 1px 12px rgba(0,0,0,0.75)" }}>
           {t.hero.lede}
         </p>
       </div>
@@ -72,6 +72,37 @@ export function Hero({ onJoin, joined, t }: HeroProps) {
               />
               <Button type="submit" variant="accent" size="md" style={{ boxShadow: "none" }}>{t.hero.join}</Button>
             </form>
+
+            {/* Divider */}
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 12 }}>
+              <div style={{ flex: 1, height: 1, background: "var(--cream-50)", opacity: 0.15 }} />
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--cream-50)", opacity: 0.35, letterSpacing: "0.1em" }}>or</span>
+              <div style={{ flex: 1, height: 1, background: "var(--cream-50)", opacity: 0.15 }} />
+            </div>
+
+            {/* Book a call */}
+            <a
+              href="mailto:hello@shift.work?subject=Book a call"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 10,
+                marginTop: 12,
+                padding: "12px 18px",
+                border: "1.5px solid rgba(255,255,255,0.22)",
+                background: "rgba(14,17,22,0.35)",
+                color: "var(--cream-50)",
+                fontFamily: "var(--font-display)",
+                fontSize: 14,
+                fontWeight: 700,
+                letterSpacing: "-0.005em",
+                textDecoration: "none",
+                transition: "border-color 0.2s, background 0.2s",
+              }}
+            >
+              {t.hero.bookCall}
+            </a>
           </>
         )}
       </div>

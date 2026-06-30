@@ -5,5 +5,7 @@ export { Hero } from "./sections/Hero";
 export { Problem } from "./sections/Problem";
 export { Pipeline } from "./sections/Pipeline";
 export { Sectors } from "./sections/Sectors";
-export { WhyNow } from "./sections/WhyNow";
+export { Pricing } from "./sections/Pricing";
+export { Faq } from "./sections/Faq";
+export { Contact } from "./sections/Contact";
 export { CompanyFooter } from "./sections/CompanyFooter";
