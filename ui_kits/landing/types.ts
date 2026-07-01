@@ -1,6 +1,13 @@
 export type Lang = "fr" | "en";
 
-export type OnJoin = (email: string) => void;
+export interface WaitlistPayload {
+  role?: string;
+  sector?: string;
+  company?: string;
+  phone?: string;
+}
+
+export type OnJoin = (email: string, payload?: WaitlistPayload) => void;
 
 export interface NavStrings {
   problem: string;

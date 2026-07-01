@@ -5,10 +5,12 @@ import type { LandingStrings, OnJoin } from "../types";
 export interface HeroProps {
   onJoin: OnJoin;
   joined: string | null;
+  submitting?: boolean;
+  error?: string | null;
   t: LandingStrings;
 }
 
-export function Hero({ onJoin, joined, t }: HeroProps) {
+export function Hero({ onJoin, joined, submitting, error, t }: HeroProps) {
   const h = t.hero;
 
   return (
@@ -144,6 +146,7 @@ export function Hero({ onJoin, joined, t }: HeroProps) {
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
+                    if (submitting) return;
                     onJoin(String(new FormData(e.currentTarget).get("email") ?? ""));
                   }}
                   style={{
@@ -160,6 +163,7 @@ export function Hero({ onJoin, joined, t }: HeroProps) {
                     name="email"
                     type="email"
                     required
+                    disabled={submitting}
                     placeholder={h.emailPh}
                     style={{
                       flex: 1,
@@ -173,10 +177,22 @@ export function Hero({ onJoin, joined, t }: HeroProps) {
                       minWidth: 0,
                     }}
                   />
-                  <Button type="submit" variant="accent" size="md" style={{ boxShadow: "none" }}>
-                    {h.join}
+                  <Button type="submit" variant="accent" size="md" style={{ boxShadow: "none" }} disabled={submitting}>
+                    {submitting ? "..." : h.join}
                   </Button>
                 </form>
+
+                {error && (
+                  <p style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 11,
+                    color: "#ef4444",
+                    marginTop: 8,
+                    marginBottom: 0,
+                  }}>
+                    {error}
+                  </p>
+                )}
 
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 12 }}>
                   <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.12)" }} />
