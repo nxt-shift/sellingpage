@@ -5,10 +5,8 @@ import type { LandingStrings } from "../types";
 export interface PricingProps { t: LandingStrings; }
 
 const THRESHOLDS = [
-  { workers: 0,     rate: 4.99, label: "0" },
-  { workers: 1000,  rate: 4.89, label: "1,000" },
-  { workers: 5000,  rate: 4.79, label: "5,000" },
-  { workers: 10000, rate: 4.69, label: "10,000" },
+  { workers: 0,   rate: 4.99, label: "0" },
+  { workers: 100, rate: 4.89, label: "100" },
 ];
 const MAX_WORKERS = 1_000_000;
 const SLIDER_MAX  = 1000; // internal slider units
@@ -29,11 +27,10 @@ function workersToPct(w: number): number {
 const MARKER_PCTS = THRESHOLDS.slice(1).map(th => workersToPct(th.workers));
 
 function getRate(w: number): number {
-  if (w < 1_000)  return 4.99;
-  if (w < 5_000)  return 4.89;
-  if (w < 10_000) return 4.79;
-  const progress = Math.sqrt((w - 10_000) / (MAX_WORKERS - 10_000));
-  return Math.max(2.99, 4.69 - progress * 1.70);
+  if (w < 100) return 4.99;
+  // √ decay: 4.89% at 100 workers → 2.99% at 1M
+  const progress = Math.sqrt((w - 100) / (MAX_WORKERS - 100));
+  return Math.max(2.99, 4.89 - progress * 1.90);
 }
 
 function getEarnRate(w: number) {
@@ -269,6 +266,66 @@ export function Pricing({ t }: PricingProps) {
           color: "var(--asphalt-900)", opacity: 0.35,
           marginTop: 20, letterSpacing: "0.04em",
         }}>{p.disclaimer}</p>
+
+        {/* Closing CTA */}
+        <div style={{
+          marginTop: 64,
+          paddingTop: 56,
+          borderTop: "1.5px solid var(--asphalt-900)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: 32,
+        }}>
+          <p style={{
+            fontSize: "clamp(22px, 3vw, 36px)",
+            fontWeight: 900,
+            letterSpacing: "-0.025em",
+            color: "var(--asphalt-900)",
+            margin: 0,
+            lineHeight: 1.1,
+          }}>
+            {p.cta}
+          </p>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <a
+              href="#top"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                padding: "14px 28px",
+                background: "var(--asphalt-900)",
+                color: "var(--cream-50)",
+                fontFamily: "var(--font-display)",
+                fontSize: 14,
+                fontWeight: 700,
+                letterSpacing: "-0.005em",
+                textDecoration: "none",
+              }}
+            >
+              {t.hero.join}
+            </a>
+            <a
+              href="mailto:hello@shift.work?subject=Book a call"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                padding: "14px 28px",
+                border: "1.5px solid var(--asphalt-900)",
+                color: "var(--asphalt-900)",
+                fontFamily: "var(--font-display)",
+                fontSize: 14,
+                fontWeight: 700,
+                letterSpacing: "-0.005em",
+                textDecoration: "none",
+                background: "transparent",
+              }}
+            >
+              {t.hero.bookCall}
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

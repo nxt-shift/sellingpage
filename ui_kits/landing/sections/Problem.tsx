@@ -1,4 +1,3 @@
-import { SectionGutter } from "../atoms/SectionGutter";
 import { useReveal } from "../atoms/useReveal";
 import type { LandingStrings } from "../types";
 
@@ -12,7 +11,6 @@ export function Problem({ t }: ProblemProps) {
 
   return (
     <section id="problem" style={{ background: "var(--cream-50)", position: "relative" }}>
-      <SectionGutter n="01" />
 
       {/* Headline */}
       <div

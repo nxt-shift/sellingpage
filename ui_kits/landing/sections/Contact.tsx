@@ -38,40 +38,64 @@ export function Contact({ t }: ContactProps) {
         </div>
 
         <h2 style={{
-          fontSize: "clamp(42px, 6vw, 80px)",
+          fontSize: "clamp(36px, 5.5vw, 72px)",
           fontWeight: 900,
           letterSpacing: "-0.035em",
           lineHeight: 1.01,
           color: "var(--cream-50)",
-          margin: "0 0 24px",
+          margin: "0 0 20px",
         }}>
           {t.contact.h2}
         </h2>
 
         <p style={{
-          fontSize: 15,
-          lineHeight: 1.65,
+          fontSize: 16,
+          lineHeight: 1.7,
           color: "var(--cream-100)",
           opacity: 0.6,
-          margin: "0 0 48px",
+          margin: "0 0 40px",
+          maxWidth: 480,
+          marginLeft: "auto",
+          marginRight: "auto",
         }}>
           {t.contact.body}
         </p>
 
-        {/* Contact links */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
+        {/* Primary CTA */}
+        <a
+          href="mailto:hello@shift.work?subject=Book a call"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "16px 36px",
+            background: "var(--shift-cobalt-500)",
+            color: "white",
+            fontFamily: "var(--font-display)",
+            fontSize: 15,
+            fontWeight: 800,
+            letterSpacing: "-0.01em",
+            textDecoration: "none",
+            marginBottom: 20,
+          }}
+        >
+          {t.hero.bookCall}
+        </a>
+
+        {/* Secondary: general email */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "center" }}>
           <a
             href={`mailto:${t.contact.email}`}
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: 16,
-              fontWeight: 700,
+              fontSize: 13,
+              fontWeight: 600,
               letterSpacing: "0.02em",
-              color: "var(--cream-50)",
+              color: "var(--cream-100)",
               textDecoration: "none",
-              borderBottom: "2px solid var(--shift-cobalt-500)",
-              paddingBottom: 2,
-              transition: "color 0.2s",
+              opacity: 0.55,
+              borderBottom: "1px solid rgba(255,255,255,0.2)",
+              paddingBottom: 1,
             }}
           >
             {t.contact.email}
@@ -80,7 +104,7 @@ export function Contact({ t }: ContactProps) {
             fontFamily: "var(--font-mono)",
             fontSize: 11,
             color: "var(--cream-100)",
-            opacity: 0.35,
+            opacity: 0.28,
             letterSpacing: "0.08em",
           }}>
             presse · {t.contact.press}

@@ -1,27 +1,27 @@
 import type { LandingStrings } from "../types";
 
 export const fr: LandingStrings = {
-  nav: { problem: "Le problème", sectors: "Secteurs", cta: "Rejoindre la liste", pre: "Pré-lancement" },
+  nav: { problem: "Le problème", sectors: "Comment ça marche", cta: "Accès anticipé", pre: "Pré-lancement" },
   hero: {
     tag1: "Canada",
     tag2: "Embauche saisonnière col-bleu",
     h1a: "Embauchez", h1b: "fiable.", h1c: "Saison après saison.",
-    lede: "Shift est la première infrastructure numérique pour l'embauche saisonnière col-bleu au Québec. Faites circuler vos travailleurs entre les saisons sans jamais les perdre.",
-    emailLabel: "Adresse courriel", emailPh: "vous@entreprise.qc", join: "Rejoindre →",
+    lede: "La première plateforme qui garde votre équipe toute l'année. Sans recruteur, sans repostage, sans repartir de zéro chaque printemps.",
+    emailLabel: "Courriel professionnel", emailPh: "vous@entreprise.qc", join: "Accès anticipé →",
     counter: "127 entreprises sur la liste · Premier accès en mai 2026",
     microcopy: "FR/EN · Aucun spam · Vous pouvez vous désinscrire en tout temps",
     thanksStamp: "MERCI.", thanksH: "Vous êtes sur la liste.",
     thanksBody: "On vous contacte par SMS dès que Shift ouvre à Montréal. Premier arrivé, premier servi.",
     thanksTo: "Confirmation envoyée à",
-    bookCall: "Réserver un appel →",
+    bookCall: "Réserver un appel de 20 min avec un fondateur →",
   },
   problem: {
-    headline: "Gardez la majorité de vos employés pour la prochaine saison.",
-    headlineHi: "Recyclez votre main-d'œuvre.",
+    headline: "La plupart des équipes saisonnières ne reviennent pas l'an prochain.",
+    headlineHi: "Shift change ça.",
     cards: [
-      { title: "C'est fiable.", body: "Vos meilleurs travailleurs reviennent automatiquement. Fini de repartir à zéro chaque printemps." },
-      { title: "L'esprit libre.", body: "Arrêtez de vous inquiéter de qui revient. Concentrez-vous sur la gestion, pas sur le recrutement." },
-      { title: "Vous êtes rentable.", body: "Moins d'intégration. Moins de formation. Plus de production. Des marges plus élevées, saison après saison." },
+      { title: "Fiable.", body: "Vos meilleurs travailleurs reviennent automatiquement. Profils vérifiés, disponibilités confirmées — prêts avant le jour un." },
+      { title: "Sans effort.", body: "Fini de courir après les rappels chaque printemps. Shift réactive votre équipe et gère toute la paie, automatiquement." },
+      { title: "Rentable.", body: "Moins d'intégration. Moins de formation. Plus de production. Des marges plus élevées — saison après saison." },
     ],
     pipeline: "Un pipeline de connexion entre entreprises.",
     sub: "Gérez votre entreprise sans vous inquiéter de la main-d'œuvre. Nous vous aidons.",
@@ -41,7 +41,7 @@ export const fr: LandingStrings = {
   pricing: {
     eyebrow: "§ — Tarification",
     h2: "Plus on grandit, moins vous payez.",
-    lede: "Les frais employeur diminuent à mesure que le réseau Shift prend de l'ampleur. Les premiers adoptants obtiennent le meilleur taux.",
+    lede: "Les frais employeur diminuent à mesure que le réseau Shift prend de l'ampleur. Les premiers adoptants obtiennent le meilleur taux — de façon permanente.",
     rateLabel: "frais employeur",
     atWorkers: "à",
     inNetwork: "travailleurs dans le réseau",
@@ -53,6 +53,7 @@ export const fr: LandingStrings = {
     workerTitle: "Les travailleurs paient toujours 0 $.",
     workerBody: "Gratuit pour rejoindre et pour changer d'entreprise. Le réseau grandit quand les travailleurs lui font confiance.",
     disclaimer: "Les taux s'appliquent aux périodes de placement actives seulement. Aucun abonnement. Aucun frais de démarrage.",
+    cta: "Bloquez votre tarif dès aujourd'hui.",
   },
   faq: {
     eyebrow: "§ 03 — FAQ",
@@ -66,9 +67,9 @@ export const fr: LandingStrings = {
     ],
   },
   contact: {
-    eyebrow: "§ 04 — Contact",
-    h2: "Parlons-en.",
-    body: "Questions, partenariats, presse — nous sommes joignables.",
+    eyebrow: "§ 04 — Contactez-nous",
+    h2: "Prêt à bâtir une meilleure équipe?",
+    body: "Réservez un appel de 20 minutes avec un fondateur. Pas de pitch, pas de pression — juste des réponses honnêtes sur ce que Shift peut faire pour votre prochaine saison.",
     email: "hello@shift.work",
     press: "presse@shift.work",
   },

@@ -67,6 +67,7 @@ export interface PricingStrings {
   workerTitle: string;
   workerBody: string;
   disclaimer: string;
+  cta: string;
 }
 
 export interface FaqItem {

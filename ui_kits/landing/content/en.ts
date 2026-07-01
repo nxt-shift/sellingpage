@@ -1,27 +1,27 @@
 import type { LandingStrings } from "../types";
 
 export const en: LandingStrings = {
-  nav: { problem: "The problem", sectors: "Sectors", cta: "Join the waitlist", pre: "Pre-launch" },
+  nav: { problem: "The problem", sectors: "How it works", cta: "Get early access", pre: "Pre-launch" },
   hero: {
     tag1: "Canada",
     tag2: "Blue-collar seasonal hiring",
     h1a: "Hire", h1b: "reliable.", h1c: "Season after season.",
-    lede: "Shift is the first digital infrastructure built for blue-collar seasonal hiring in Quebec. Circulate your workforce across seasons without ever losing it.",
-    emailLabel: "Email address", emailPh: "you@company.qc", join: "Join →",
+    lede: "The first hiring platform that keeps your crew year-round. No recruiter, no reposting, no starting over every spring.",
+    emailLabel: "Work email", emailPh: "you@company.qc", join: "Get early access →",
     counter: "127 companies on the list · First access May 2026",
     microcopy: "EN/FR · No spam · Unsubscribe anytime",
     thanksStamp: "THANKS.", thanksH: "You're on the list.",
     thanksBody: "We'll SMS you the day Shift opens in Montreal. First come, first served.",
     thanksTo: "Confirmation sent to",
-    bookCall: "Book a call →",
+    bookCall: "Book a 20-min call with a founder →",
   },
   problem: {
-    headline: "Keep the majority of your employees for the next season.",
-    headlineHi: "Recycle your workforce.",
+    headline: "Most seasonal crews don't come back next year.",
+    headlineHi: "Shift changes that.",
     cards: [
-      { title: "It's reliable.", body: "Your best workers come back to you automatically. No more starting from scratch every spring." },
-      { title: "Mind free.", body: "Stop worrying about who's coming back. Focus on running your business, not finding your crew." },
-      { title: "You're profitable.", body: "Less onboarding. Less training. More output. Higher margins, season after season." },
+      { title: "Reliable.", body: "Your best workers return automatically. Verified profiles, confirmed availability — ready before day one." },
+      { title: "Effortless.", body: "Stop chasing callbacks every spring. Shift re-activates your crew and handles all payroll, automatically." },
+      { title: "Profitable.", body: "Less onboarding. Less training. More output. Higher margins — season after season." },
     ],
     pipeline: "A connecting pipeline between companies.",
     sub: "Now you can run your business without worrying about workforce. We help you.",
@@ -41,7 +41,7 @@ export const en: LandingStrings = {
   pricing: {
     eyebrow: "§ — Pricing",
     h2: "The more we grow, the less you pay.",
-    lede: "Employer fees decrease as the Shift network scales. Early adopters lock in the best rate.",
+    lede: "Employer fees decrease as the Shift network scales. Early adopters lock in the best rate — permanently.",
     rateLabel: "employer fee",
     atWorkers: "at",
     inNetwork: "workers in the network",
@@ -53,6 +53,7 @@ export const en: LandingStrings = {
     workerTitle: "Workers always pay $0.",
     workerBody: "Free to join, free to move between companies. The network grows when workers trust it.",
     disclaimer: "Rates apply to active placement periods only. No subscription. No setup costs.",
+    cta: "Lock in your rate today.",
   },
   faq: {
     eyebrow: "§ 03 — FAQ",
@@ -66,9 +67,9 @@ export const en: LandingStrings = {
     ],
   },
   contact: {
-    eyebrow: "§ 04 — Contact",
-    h2: "Let's talk.",
-    body: "Questions, partnerships, press — we're reachable.",
+    eyebrow: "§ 04 — Talk to us",
+    h2: "Ready to build a better crew?",
+    body: "Book a 20-minute call with a founder. No pitch, no pressure — just honest answers about what Shift can do for your next season.",
     email: "hello@shift.work",
     press: "press@shift.work",
   },

@@ -1,7 +1,5 @@
-import React from "react";
 import { Button } from "../../../src/components/core/Button";
-import { Scene3D } from "../widgets/three/Scene3D";
-import { SEASON_CLOCK_CONFIG, type SeasonId } from "../seasonClock.config";
+
 import type { LandingStrings, OnJoin } from "../types";
 
 export interface HeroProps {
@@ -10,101 +8,227 @@ export interface HeroProps {
   t: LandingStrings;
 }
 
-function useSeasonCycle(order: SeasonId[], cycleMs: number): SeasonId {
-  const [index, setIndex] = React.useState(0);
-  React.useEffect(() => {
-    const id = window.setInterval(() => setIndex((i) => (i + 1) % order.length), cycleMs);
-    return () => window.clearInterval(id);
-  }, [order, cycleMs]);
-  return order[index];
-}
-
 export function Hero({ onJoin, joined, t }: HeroProps) {
-  const season = useSeasonCycle(SEASON_CLOCK_CONFIG.seasonOrder, SEASON_CLOCK_CONFIG.cycleMs);
+  const h = t.hero;
 
   return (
-    <section id="top" style={{ position: "relative", minHeight: "100vh", borderBottom: "2px solid var(--asphalt-900)", overflow: "hidden" }}>
-      {/* 3D background */}
-      <div style={{ position: "absolute", inset: 0 }}>
-        <Scene3D season={season} />
-      </div>
+    <section
+      id="top"
+      style={{
+        position: "relative",
+        minHeight: "100vh",
+        background: "var(--asphalt-900)",
+        borderBottom: "2px solid rgba(255,255,255,0.08)",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
 
-      {/* Title — top of hero */}
-      <div style={{ position: "relative", zIndex: 1, maxWidth: 640, margin: "0 auto", padding: "80px 24px 0", textAlign: "center" }}>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, justifyContent: "center", marginBottom: 24, fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}>
-          <span style={{ padding: "4px 8px", background: "var(--cream-50)", color: "var(--asphalt-900)" }}>{t.hero.tag1}</span>
-          <span style={{ padding: "4px 8px", border: "1.5px solid var(--cream-50)", color: "var(--cream-50)" }}>{t.hero.tag2}</span>
+
+      {/* Content */}
+      <div style={{
+        position: "relative",
+        zIndex: 2,
+        maxWidth: 1200,
+        margin: "0 auto",
+        width: "100%",
+        padding: "120px 64px 100px",
+        boxSizing: "border-box",
+      }}>
+        {/* Tags */}
+        <div style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 8,
+          marginBottom: 48,
+          fontFamily: "var(--font-mono)",
+          fontSize: 11,
+          fontWeight: 600,
+          letterSpacing: "0.13em",
+          textTransform: "uppercase",
+        }}>
+          <span style={{ padding: "5px 10px", background: "var(--shift-cobalt-500)", color: "white" }}>
+            {h.tag1}
+          </span>
+          <span style={{ padding: "5px 10px", border: "1px solid rgba(255,255,255,0.18)", color: "rgba(255,255,255,0.55)" }}>
+            {h.tag2}
+          </span>
         </div>
 
-        <h1 style={{ fontSize: "clamp(40px, 6vw, 68px)", lineHeight: 1.02, fontWeight: 900, letterSpacing: "-0.035em", color: "var(--cream-50)", margin: 0 }}>
-          {t.hero.h1a}{" "}
-          <span style={{ color: "var(--shift-cobalt-400)", display: "inline-block", borderBottom: "6px solid var(--shift-cobalt-500)", paddingBottom: 1 }}>{t.hero.h1b}</span>
-          <br/>
-          {t.hero.h1c}
+        {/* Headline */}
+        <h1 style={{
+          fontSize: "clamp(52px, 7.5vw, 104px)",
+          lineHeight: 0.96,
+          fontWeight: 900,
+          letterSpacing: "-0.04em",
+          color: "var(--cream-50)",
+          margin: "0 0 32px",
+          maxWidth: "14ch",
+          textShadow: "0 2px 32px rgba(0,0,0,0.5)",
+        }}>
+          {h.h1a}{" "}
+          <span style={{
+            color: "var(--shift-cobalt-400)",
+            borderBottom: "5px solid var(--shift-cobalt-500)",
+            paddingBottom: 2,
+          }}>
+            {h.h1b}
+          </span>
+          <br />
+          {h.h1c}
         </h1>
-      </div>
 
-      {/* Lede — below centre, over the hat */}
-      <div style={{ position: "absolute", top: "62%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 1, width: "100%", maxWidth: 520, padding: "0 32px", boxSizing: "border-box", textAlign: "center" }}>
-        <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--cream-50)", opacity: 0.88, margin: 0, textShadow: "0 1px 12px rgba(0,0,0,0.75)" }}>
-          {t.hero.lede}
-        </p>
-      </div>
+        {/* Cobalt rule */}
+        <div style={{ width: 52, height: 3, background: "var(--shift-cobalt-500)", marginBottom: 36 }} />
 
-      {/* Email form — pinned to bottom of hero */}
-      <div style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", zIndex: 1, width: "100%", maxWidth: 560, padding: "0 24px", boxSizing: "border-box", textAlign: "center" }}>
-        {joined ? (
-          <div style={{ border: "1.5px solid var(--cream-50)", background: "rgba(14, 17, 22, 0.55)", padding: 24 }}>
-            <h2 style={{ fontSize: 20, fontWeight: 900, color: "var(--cream-50)", letterSpacing: "-0.02em", margin: "0 0 6px" }}>{t.hero.thanksH}</h2>
-            <p style={{ fontSize: 14, color: "var(--cream-100)", opacity: 0.85, margin: 0 }}>{t.hero.thanksBody}</p>
-            <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--cream-100)", opacity: 0.7, marginTop: 12 }}>{t.hero.thanksTo} <b style={{ color: "var(--cream-50)" }}>{joined}</b></p>
+        {/* Lede + CTA row */}
+        <div style={{ display: "flex", gap: 72, alignItems: "flex-start", flexWrap: "wrap" }}>
+
+          {/* Lede */}
+          <p style={{
+            fontSize: 17,
+            lineHeight: 1.72,
+            color: "var(--cream-50)",
+            opacity: 0.72,
+            margin: 0,
+            maxWidth: 380,
+            flex: "0 0 auto",
+            textShadow: "0 1px 12px rgba(0,0,0,0.6)",
+          }}>
+            {h.lede}
+          </p>
+
+          {/* CTA */}
+          <div style={{ flex: "1 1 280px", maxWidth: 440 }}>
+            {joined ? (
+              <div style={{
+                border: "1.5px solid rgba(255,255,255,0.2)",
+                background: "rgba(10,12,18,0.6)",
+                backdropFilter: "blur(12px)",
+                padding: 28,
+              }}>
+                <h2 style={{ fontSize: 20, fontWeight: 900, color: "var(--cream-50)", letterSpacing: "-0.02em", margin: "0 0 8px" }}>
+                  {h.thanksH}
+                </h2>
+                <p style={{ fontSize: 14, color: "var(--cream-100)", opacity: 0.8, margin: 0 }}>{h.thanksBody}</p>
+                <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--cream-100)", opacity: 0.55, marginTop: 14 }}>
+                  {h.thanksTo} <b style={{ color: "var(--cream-50)" }}>{joined}</b>
+                </p>
+              </div>
+            ) : (
+              <>
+                {/* Early-access dot */}
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  marginBottom: 14,
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 10,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                }}>
+                  <span style={{
+                    width: 6, height: 6, borderRadius: "50%",
+                    background: "var(--shift-cobalt-400)",
+                    flexShrink: 0,
+                    boxShadow: "0 0 0 3px rgba(37,99,235,0.28)",
+                  }} />
+                  <span style={{ color: "var(--shift-cobalt-400)", fontWeight: 700 }}>{t.nav.pre}</span>
+                  <span style={{ color: "rgba(255,255,255,0.22)" }}>·</span>
+                  <span style={{ color: "rgba(255,255,255,0.38)" }}>Montréal · 2026</span>
+                </div>
+
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    onJoin(String(new FormData(e.currentTarget).get("email") ?? ""));
+                  }}
+                  style={{
+                    display: "flex",
+                    gap: 8,
+                    alignItems: "stretch",
+                    border: "1.5px solid rgba(255,255,255,0.25)",
+                    background: "rgba(10,12,18,0.55)",
+                    backdropFilter: "blur(12px)",
+                    padding: 6,
+                  }}
+                >
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    placeholder={h.emailPh}
+                    style={{
+                      flex: 1,
+                      border: "none",
+                      outline: "none",
+                      background: "transparent",
+                      padding: "0 14px",
+                      fontFamily: "var(--font-body)",
+                      fontSize: 15,
+                      color: "var(--cream-50)",
+                      minWidth: 0,
+                    }}
+                  />
+                  <Button type="submit" variant="accent" size="md" style={{ boxShadow: "none" }}>
+                    {h.join}
+                  </Button>
+                </form>
+
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 12 }}>
+                  <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.12)" }} />
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em" }}>or</span>
+                  <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.12)" }} />
+                </div>
+
+                <a
+                  href="mailto:hello@shift.work?subject=Book a call"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: 12,
+                    padding: "13px 18px",
+                    border: "1.5px solid rgba(255,255,255,0.18)",
+                    background: "rgba(10,12,18,0.4)",
+                    backdropFilter: "blur(8px)",
+                    color: "var(--cream-50)",
+                    fontFamily: "var(--font-display)",
+                    fontSize: 14,
+                    fontWeight: 700,
+                    letterSpacing: "-0.005em",
+                    textDecoration: "none",
+                  }}
+                >
+                  {h.bookCall}
+                </a>
+              </>
+            )}
           </div>
-        ) : (
-          <>
-            <form
-              onSubmit={(e) => { e.preventDefault(); onJoin(String(new FormData(e.currentTarget).get("email") ?? "")); }}
-              style={{ display: "flex", gap: 8, alignItems: "stretch", border: "2px solid var(--cream-50)", background: "rgba(14, 17, 22, 0.4)", padding: 6 }}
-            >
-              <input
-                name="email" type="email" required
-                placeholder={t.hero.emailPh}
-                style={{ flex: 1, border: "none", outline: "none", background: "transparent", padding: "0 14px", fontFamily: "var(--font-body)", fontSize: 15, color: "var(--cream-50)", minWidth: 0 }}
-              />
-              <Button type="submit" variant="accent" size="md" style={{ boxShadow: "none" }}>{t.hero.join}</Button>
-            </form>
+        </div>
+      </div>
 
-            {/* Divider */}
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 12 }}>
-              <div style={{ flex: 1, height: 1, background: "var(--cream-50)", opacity: 0.15 }} />
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--cream-50)", opacity: 0.35, letterSpacing: "0.1em" }}>or</span>
-              <div style={{ flex: 1, height: 1, background: "var(--cream-50)", opacity: 0.15 }} />
-            </div>
-
-            {/* Book a call */}
-            <a
-              href="mailto:hello@shift.work?subject=Book a call"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 10,
-                marginTop: 12,
-                padding: "12px 18px",
-                border: "1.5px solid rgba(255,255,255,0.22)",
-                background: "rgba(14,17,22,0.35)",
-                color: "var(--cream-50)",
-                fontFamily: "var(--font-display)",
-                fontSize: 14,
-                fontWeight: 700,
-                letterSpacing: "-0.005em",
-                textDecoration: "none",
-                transition: "border-color 0.2s, background 0.2s",
-              }}
-            >
-              {t.hero.bookCall}
-            </a>
-          </>
-        )}
+      {/* Scroll indicator */}
+      <div style={{
+        position: "absolute",
+        bottom: 32,
+        left: "50%",
+        transform: "translateX(-50%)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 6,
+        opacity: 0.18,
+        pointerEvents: "none",
+        zIndex: 2,
+      }}>
+        <div style={{ width: 1, height: 36, background: "var(--cream-50)" }} />
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: 9, color: "var(--cream-50)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+          scroll
+        </span>
       </div>
     </section>
   );

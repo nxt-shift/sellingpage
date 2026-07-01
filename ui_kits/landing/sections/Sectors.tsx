@@ -53,15 +53,6 @@ export function Sectors({ t }: SectorsProps) {
         background: "var(--cream-50)",
       }}
     >
-      {/* Vertical section label */}
-      <div style={{
-        position: "absolute", top: 24, left: 24, zIndex: 2,
-        fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 600,
-        letterSpacing: "0.18em", color: "var(--asphalt-900)", opacity: 0.22,
-        writingMode: "vertical-rl", transform: "rotate(180deg)",
-        textTransform: "uppercase",
-      }}>02 / 03</div>
-
       {/* Sticky viewport */}
       <div style={{
         position: "sticky",

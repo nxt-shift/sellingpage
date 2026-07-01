@@ -94,15 +94,6 @@ export function Faq({ t }: FaqProps) {
 
   return (
     <section style={{ background: "var(--cream-50)", position: "relative" }}>
-      {/* Vertical label */}
-      <div style={{
-        position: "absolute", top: 24, left: 24,
-        fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 600,
-        letterSpacing: "0.18em", color: "var(--asphalt-900)", opacity: 0.22,
-        writingMode: "vertical-rl", transform: "rotate(180deg)",
-        textTransform: "uppercase",
-      }}>03 / 03</div>
-
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "120px 48px 100px" }}>
 
         {/* Header */}
