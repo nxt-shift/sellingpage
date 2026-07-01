@@ -4,9 +4,11 @@ import {
   ShiftNav,
   Hero,
   Problem,
+  Pipeline,
   Sectors,
-  WhyNow,
-  Waitlist,
+  Pricing,
+  Faq,
+  Contact,
   CompanyFooter,
 } from "../ui_kits/landing/Sections";
 import type { Lang, OnJoin } from "../ui_kits/landing/types";
@@ -18,16 +20,17 @@ export default function App() {
   const onJoin: OnJoin = (email) => {
     if (!email) return;
     setJoined(email);
-    setTimeout(() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" }), 50);
   };
   return (
     <>
       <ShiftNav lang={lang} setLang={setLang} t={t} />
-      <Hero onJoin={onJoin} t={t} />
+      <Hero onJoin={onJoin} joined={joined} t={t} />
       <Problem t={t} />
+      <Pipeline t={t} />
       <Sectors t={t} />
-      <WhyNow t={t} />
-      <Waitlist onJoin={onJoin} joined={joined} t={t} />
+      <Pricing t={t} />
+      <Faq t={t} />
+      <Contact t={t} />
       <CompanyFooter t={t} />
     </>
   );

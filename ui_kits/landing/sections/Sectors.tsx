@@ -1,66 +1,192 @@
-import { SectorChip, type Sector } from "../../../src/components/shift/SectorChip";
-import { SectionGutter } from "../atoms/SectionGutter";
+import * as React from "react";
 import type { LandingStrings } from "../types";
 
 export interface SectorsProps {
   t: LandingStrings;
 }
 
-interface SectorRow {
-  name: string;
-  sector: Sector;
-  pattern: string;
-}
-
-const CALENDAR: SectorRow[] = [
-  { name: "Paysagement",   sector: "paysagement",   pattern: "....AAAAAA.." },
-  { name: "Déneigement",   sector: "deneigement",   pattern: "BBB.......BB" },
-  { name: "Agriculture",   sector: "agriculture",   pattern: ".....AAAA..." },
-  { name: "Ski",           sector: "ski",           pattern: "BB.........B" },
-  { name: "Construction",  sector: "construction",  pattern: "...AAAAAAA.." },
-  { name: "Déménagement",  sector: "demenagement",  pattern: ".....BB....." },
-];
-
-const MONTHS = ["J","F","M","A","M","J","J","A","S","O","N","D"];
-
-const cellColor = (c: string) => c === "A" ? "var(--shift-cobalt-500)" : c === "B" ? "var(--shift-orange-500)" : "var(--asphalt-100)";
+const PER_PAIR = 2;
 
 export function Sectors({ t }: SectorsProps) {
+  const outerRef = React.useRef<HTMLElement>(null);
+  const [targetPair, setTargetPair]   = React.useState(0);
+  const [displayPair, setDisplayPair] = React.useState(0);
+  const [visible, setVisible]         = React.useState(true);
+
+  const totalPairs = Math.ceil(t.sectors.steps.length / PER_PAIR);
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      const el = outerRef.current;
+      if (!el) return;
+      const rect      = el.getBoundingClientRect();
+      const scrolled  = -rect.top;
+      const available = rect.height - window.innerHeight;
+      if (available <= 0) return;
+      const progress = Math.max(0, Math.min(0.9999, scrolled / available));
+      setTargetPair(Math.min(totalPairs - 1, Math.floor(progress * totalPairs)));
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [totalPairs]);
+
+  React.useEffect(() => {
+    if (targetPair === displayPair) return;
+    setVisible(false);
+    const timer = setTimeout(() => {
+      setDisplayPair(targetPair);
+      setVisible(true);
+    }, 260);
+    return () => clearTimeout(timer);
+  }, [targetPair, displayPair]);
+
+  const startIdx  = displayPair * PER_PAIR;
+  const pairSteps = t.sectors.steps.slice(startIdx, startIdx + PER_PAIR);
+
   return (
-    <section id="sectors" style={{ padding: "120px 48px", background: "var(--bg-surface)", position: "relative" }}>
-      <SectionGutter n="02" />
-      <div style={{ maxWidth: 1180, margin: "0 auto" }}>
-        <div style={{ fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--shift-orange-600)", marginBottom: 16 }}>{t.sectors.eyebrow}</div>
-        <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 48, alignItems: "flex-end", marginBottom: 48 }}>
-          <h2 style={{ fontSize: "clamp(40px, 5.5vw, 72px)", fontWeight: 900, letterSpacing: "-0.03em", maxWidth: 760, lineHeight: 0.98 }}>{t.sectors.h2}</h2>
-          <p style={{ fontSize: 17, color: "var(--text-body)", lineHeight: 1.5 }}>{t.sectors.lede}</p>
+    <section
+      id="sectors"
+      ref={outerRef}
+      style={{
+        position: "relative",
+        height: `${(totalPairs + 1) * 100}vh`,
+        background: "var(--cream-50)",
+      }}
+    >
+      {/* Sticky viewport */}
+      <div style={{
+        position: "sticky",
+        top: 0,
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "64px 48px",
+        boxSizing: "border-box",
+        overflow: "hidden",
+      }}>
+
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: 52, width: "100%", maxWidth: 1100 }}>
+          <div style={{
+            fontFamily: "var(--font-mono)",
+            fontWeight: 700,
+            fontSize: 11,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "var(--shift-cobalt-500)",
+            marginBottom: 18,
+          }}>
+            {t.sectors.eyebrow}
+          </div>
+          <h2 style={{
+            fontSize: "clamp(46px, 6vw, 82px)",
+            fontWeight: 900,
+            letterSpacing: "-0.03em",
+            lineHeight: 1.02,
+            color: "var(--asphalt-900)",
+            margin: 0,
+          }}>
+            {t.sectors.h2}
+          </h2>
         </div>
 
-        <div style={{ border: "1.5px solid var(--asphalt-900)", background: "var(--cream-50)" }}>
-          <div style={{ padding: "14px 24px", borderBottom: "1.5px solid var(--asphalt-900)", background: "var(--asphalt-900)", color: "var(--cream-50)", display: "grid", gridTemplateColumns: "200px repeat(12, 1fr)", gap: 4, fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase" }}>
-            <div style={{ opacity: 0.5 }}>SECTOR</div>
-            {MONTHS.map((m, i) => <div key={i} style={{ textAlign: "center" }}>{m}</div>)}
-          </div>
-          <div style={{ padding: "10px 24px 20px" }}>
-            {CALENDAR.map((row, ri) => (
-              <div key={row.name} style={{ display: "grid", gridTemplateColumns: "200px repeat(12, 1fr)", gap: 4, alignItems: "center", padding: "8px 0", borderBottom: ri < CALENDAR.length-1 ? "1px dashed var(--asphalt-200)" : "none" }}>
-                <div><SectorChip sector={row.sector} /></div>
-                {row.pattern.split("").map((c, i) => (
-                  <div key={i} style={{
-                    height: 28, background: cellColor(c),
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 11,
-                    color: c === "." ? "transparent" : (c === "B" ? "var(--asphalt-900)" : "var(--cream-50)"),
-                  }}>{c === "." ? "" : c}</div>
-                ))}
-              </div>
-            ))}
-          </div>
-          <div style={{ display: "flex", gap: 28, padding: "14px 24px", borderTop: "1.5px solid var(--asphalt-900)", background: "var(--cream-100)", fontSize: 12, color: "var(--text-muted)", fontFamily: "var(--font-mono)", flexWrap: "wrap" }}>
-            <span><span style={{display:"inline-block",width:14,height:14,background:"var(--shift-cobalt-500)",verticalAlign:"middle",marginRight:8}}/>A · {t.sectors.legendA}</span>
-            <span><span style={{display:"inline-block",width:14,height:14,background:"var(--shift-orange-500)",verticalAlign:"middle",marginRight:8}}/>B · {t.sectors.legendB}</span>
-            <span><span style={{display:"inline-block",width:14,height:14,background:"var(--asphalt-100)",verticalAlign:"middle",marginRight:8,border:"1px solid var(--asphalt-200)"}}/>{t.sectors.legendBlank}</span>
-          </div>
+        {/* Two animated cards */}
+        <div
+          style={{
+            width: "100%",
+            maxWidth: 1100,
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 20,
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0px)" : "translateY(-20px)",
+            transition: "opacity 0.26s cubic-bezier(0.4,0,0.6,1), transform 0.26s cubic-bezier(0.4,0,0.6,1)",
+          }}
+        >
+          {pairSteps.map((step, i) => (
+            <div
+              key={startIdx + i}
+              style={{
+                background: "white",
+                padding: "44px 40px 40px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 18,
+                minHeight: 260,
+                border: "1.5px solid var(--asphalt-900)",
+              }}
+            >
+              <span style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "clamp(52px, 6.5vw, 82px)",
+                fontWeight: 900,
+                letterSpacing: "-0.04em",
+                lineHeight: 1,
+                color: "var(--shift-cobalt-500)",
+                opacity: 0.13,
+                userSelect: "none",
+              }}>
+                {String(startIdx + i + 1).padStart(2, "0")}
+              </span>
+
+              <div style={{ width: 32, height: 3, background: "var(--shift-cobalt-500)" }} />
+
+              <h3 style={{
+                fontSize: "clamp(20px, 2.2vw, 28px)",
+                fontWeight: 900,
+                letterSpacing: "-0.02em",
+                lineHeight: 1.1,
+                color: "var(--asphalt-900)",
+                margin: 0,
+              }}>
+                {step.title}
+              </h3>
+
+              <p style={{
+                fontSize: 15,
+                lineHeight: 1.65,
+                color: "var(--asphalt-900)",
+                opacity: 0.65,
+                margin: 0,
+              }}>
+                {step.body}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Progress dots */}
+        <div style={{ display: "flex", gap: 8, marginTop: 40, alignItems: "center" }}>
+          {Array.from({ length: totalPairs }, (_, i) => (
+            <div
+              key={i}
+              style={{
+                height: 6,
+                width: i === targetPair ? 28 : 6,
+                borderRadius: 3,
+                background: i === targetPair ? "var(--shift-cobalt-500)" : "var(--asphalt-900)",
+                opacity: i === targetPair ? 1 : 0.18,
+                transition: "width 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.35s ease",
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Scroll hint */}
+        <div style={{
+          position: "absolute",
+          bottom: 28,
+          fontFamily: "var(--font-mono)",
+          fontSize: 10,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: "var(--asphalt-900)",
+          opacity: targetPair === 0 ? 0.28 : 0,
+          transition: "opacity 0.5s ease",
+        }}>
+          scroll ↓
         </div>
       </div>
     </section>
